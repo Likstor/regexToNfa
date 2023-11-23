@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.28)
 
-project(printFA)
+project(printFA CXX)
 
 set(SOURCE_LIB printFA.cpp)
+set(HEADERS printFA.h)
 
-add_library(printFA STATIC ${SOURCE_LIB})
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+add_library(printFA ${SOURCE_LIB} ${HEADERS})
+target_include_directories(printFA PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

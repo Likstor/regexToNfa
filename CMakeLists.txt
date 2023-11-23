@@ -6,10 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(SOURCE_EXE main.cpp)
 
-include_directories(nfa2dfa)
-include_directories(printFA)
-include_directories(regex2nfa)
-
 add_executable(main ${SOURCE_EXE})
 
 add_subdirectory(nfa2dfa)
