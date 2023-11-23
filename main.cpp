@@ -1,11 +1,5 @@
 ﻿#include <iostream>
-#include <vector>
 #include <string>
-#include <set>
-#include <map>
-#include <ctype.h>
-#include <stack>
-#include <queue>
 #include "regex2nfa.h"
 #include "nfa2dfa.h"
 #include "printFA.h"
