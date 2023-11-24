@@ -13,9 +13,8 @@ void printFA(LA &listAdjancency)
     {
         for (std::pair<int, char> edge : subList)
         {
-            //	std::cout << state << ' ' << edge.second << ' ' << edge.first << std::endl; // Печать по заданию
-            std::cout << state << "((" << state << "))"
-                      << " -->|" << edge.second << "| " << edge.first << "((" << edge.first << "))" << std::endl; // Печать для mermaid
+            std::cout << state << ' ' << edge.second << ' ' << edge.first << std::endl; // Печать вида: (Vertex) (Transition symbol) (Vertex)
+            // std::cout << state << "((" << state << "))" << " -->|" << edge.second << "| " << edge.first << "((" << edge.first << "))" << std::endl; // Печать для mermaid
         }
         state++;
     }
