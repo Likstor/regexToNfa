@@ -9,8 +9,9 @@
 using Edges = std::vector<std::pair<int, char>>;
 
 typedef std::vector<Edges> LA; // List adjacency / Список смежности
+typedef std::map<std::set<int>, std::set<std::pair<std::set<int>, char>>> ECM;
 
-std::vector<bool> _visited; // Multi threading break
+    std::vector<bool> _visited; // Multi threading break
 void epsilonClosure(std::set<int> &eClosure, const LA &NFA)
 { // Эпсилон замыкание / Обходим граф по эпсилон стрелкам / Итеративный DFS
     std::stack<int> s;
@@ -65,11 +66,10 @@ std::map<char, std::set<int>> collect(std::set<int> &key, const LA &g)
     return mp;
 }
 
-LA NFAtoDFA(const LA &NFA)
+ECM NFAtoPreDFA(const LA &NFA)
 { // Детерминизация НКА
-    std::map<std::set<int>, std::set<std::pair<std::set<int>, char>>> eClosureMap;
+    ECM eClosureMap;
     std::queue<std::set<int>> keys;
-    std::vector<Edges> DFA;
 
     std::set<int> eClosure = {0};
     epsilonClosure(eClosure, NFA);
@@ -97,6 +97,11 @@ LA NFAtoDFA(const LA &NFA)
         }
     }
 
+    return eClosureMap;
+}
+
+
+void buildDFA(LA& DFA, ECM& eClosureMap) {
     // Нумеруем ДКА
     int state = 0;
     std::map<std::set<int>, int> number;
@@ -118,5 +123,5 @@ LA NFAtoDFA(const LA &NFA)
         }
         state++;
     }
-    return DFA;
 }
+

@@ -18,12 +18,15 @@ int main() {
 
 	LA NFA;
 	regexToNFA(regex, NFA);
+	printStartAndFinishNFA(NFA);
 	printFA(NFA);
 
 	// NFAtoDFA
 	cout << "DFA" << endl;
 
-	auto DFA = NFAtoDFA(NFA);
-
+	ECM eClosureMap = NFAtoPreDFA(NFA);
+	printStartAndFinishDFA(NFA, eClosureMap);
+	LA DFA;
+	buildDFA(DFA, eClosureMap);
 	printFA(DFA);
 }
